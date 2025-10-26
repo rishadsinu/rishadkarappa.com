@@ -80,15 +80,15 @@ export default function Home() {
   };
 
   const handleEmail = () => {
-    window.location.href = 'mailto:your.email@example.com';
+    window.location.href = 'rishadkarappa@gmail.com';
   };
 
   const handleLinkedIn = () => {
-    window.open('https://linkedin.com/in/your-profile', '_blank');
+    window.open('https://www.linkedin.com/in/muhammad-rishad', '_blank');
   };
 
   const handleGitHub = () => {
-    window.open('https://github.com/your-username', '_blank');
+    window.open('https://github.com/rishadsinu', '_blank');
   };
 
   const skills: Skill = {
@@ -148,12 +148,12 @@ export default function Home() {
         <div className="max-w-4xl w-full text-center space-y-8">
           <div className="space-y-4">
             <h2 className={`text-5xl md:text-7xl font-bold tracking-tight ${darkMode ? 'text-white' : 'text-black'}`}>
-              Muhammed Rishad
+              Rishad
               <br />
               <span className={darkMode ? 'text-white/60' : 'text-black/60'}>Karappa</span>
             </h2>
             <p className={`text-xl md:text-2xl ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
-              Senior MERN Stack Developer
+               MERN Stack Developer
             </p>
             <p className={`text-base md:text-lg max-w-2xl mx-auto ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
               Architecting scalable microservices and cloud-native applications with expertise in Docker, Kubernetes, and modern web technologies
@@ -246,7 +246,7 @@ export default function Home() {
       <footer className={`py-8 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-6xl mx-auto text-center">
           <p className={darkMode ? 'text-white/50' : 'text-black/50'}>
-            © 2025 Muhammed Rishad Karappa. Built with Next.js & Tailwind CSS
+            © 2025 Rishad Karappa
           </p>
         </div>
       </footer>
