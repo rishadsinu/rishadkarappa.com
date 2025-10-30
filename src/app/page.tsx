@@ -111,7 +111,14 @@ export default function Home() {
       description: 'Connecting unskilled workers with employers through an intelligent matching system, featuring geo-location services, rating system, and secure payments.',
       tech: ['MERN Stack', 'Socket.io', 'PostgreSQL', 'Docker', 'AWS'],
       highlights: ['Real-time Matching', 'Geo-location', 'Rating System', 'Secure Payments']
+    },
+    {
+      title: 'Social Media Platform for Documenting Disciplined Work & Professional Journeys',
+      description: 'A unique social platform where individuals can share, document, and showcase their disciplined work, progress, and professional journey to inspire and connect with others.',
+      tech: ['MERN Stack', 'Socket.io', 'PostgreSQL', 'Docker', 'AWS'],
+      highlights: ['Real-time Collaboration', 'User Rating System']
     }
+
   ];
 
   return (
@@ -120,7 +127,7 @@ export default function Home() {
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${darkMode ? 'bg-black/90' : 'bg-white/90'} backdrop-blur-sm border-b ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-xl font-bold tracking-tight"></h1>
-          
+
           <div className="hidden md:flex gap-8 text-sm">
             {['home', 'about', 'skills', 'projects', 'contact'].map(section => (
               <button
@@ -153,7 +160,7 @@ export default function Home() {
               <span className={darkMode ? 'text-white/60' : 'text-black/60'}>Karappa</span>
             </h2>
             <p className={`text-xl md:text-2xl ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
-               MERN Stack Developer
+              MERN Stack Developer
             </p>
             <p className={`text-base md:text-lg max-w-2xl mx-auto ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
               Architecting scalable microservices and cloud-native applications with expertise in Docker, Kubernetes, and modern web technologies
@@ -201,7 +208,7 @@ export default function Home() {
       <section id="skills" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-6xl mx-auto">
           <h3 className="text-4xl font-bold mb-16 text-center">Technical Expertise</h3>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             <SkillCard title="Frontend" icon={<Code2 size={24} />} skills={skills.frontend} darkMode={darkMode} />
             <SkillCard title="Backend" icon={<Server size={24} />} skills={skills.backend} darkMode={darkMode} />
@@ -216,7 +223,7 @@ export default function Home() {
       <section id="projects" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-6xl mx-auto">
           <h3 className="text-4xl font-bold mb-16 text-center">Featured Projects</h3>
-          
+
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} darkMode={darkMode} />
@@ -232,7 +239,7 @@ export default function Home() {
           <p className={`text-xl mb-12 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
             Available for freelance projects and full-time opportunities
           </p>
-          
+
           <div className="flex flex-wrap gap-6 justify-center mb-12">
             <ContactButton icon={<Mail size={20} />} text="Email Me" darkMode={darkMode} onClick={handleEmail} />
             <ContactButton icon={<Calendar size={20} />} text="Schedule Call" darkMode={darkMode} onClick={handleScheduleMeeting} />
@@ -279,7 +286,7 @@ function ProjectCard({ project, darkMode }: ProjectCardProps) {
       <p className={`mb-6 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
         {project.description}
       </p>
-      
+
       <div className="mb-6">
         <h5 className="text-sm font-semibold mb-3 uppercase tracking-wider">Key Features</h5>
         <div className="grid grid-cols-2 gap-2">
@@ -290,7 +297,7 @@ function ProjectCard({ project, darkMode }: ProjectCardProps) {
           ))}
         </div>
       </div>
-      
+
       <div className="flex flex-wrap gap-2">
         {project.tech.map((tech, index) => (
           <span
@@ -307,7 +314,7 @@ function ProjectCard({ project, darkMode }: ProjectCardProps) {
 
 function ContactButton({ icon, text, darkMode, onClick }: ContactButtonProps) {
   return (
-    <button 
+    <button
       onClick={onClick}
       className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all hover:scale-105 ${darkMode ? 'border-white/20 hover:bg-white/10' : 'border-black/20 hover:bg-black/10'}`}
     >
