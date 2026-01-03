@@ -92,10 +92,10 @@ export default function Home() {
   };
 
   const skills: Skill = {
-    frontend: ['Next.js', 'React.js', 'TypeScript', 'Tailwind CSS', 'Redux'],
+    frontend: ['React.js', 'TypeScript', 'Tailwind CSS', 'Redux'],
     backend: ['Node.js', 'Express.js', 'Microservices', 'RESTful APIs', 'GraphQL'],
     database: ['PostgreSQL', 'MongoDB', 'Redis', 'Database Design', 'Query Optimization'],
-    devops: ['Docker', 'Kubernetes', 'CI/CD', 'AWS/Azure', 'Nginx'],
+    devops: ['Docker', 'Kubernetes', 'CI/CD', 'AWS', 'Nginx'],
     architecture: ['Microservices', 'Event-Driven', 'CQRS', 'Domain-Driven Design', 'API Gateway']
   };
 
