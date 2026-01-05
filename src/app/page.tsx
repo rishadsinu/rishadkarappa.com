@@ -192,7 +192,7 @@ export default function Home() {
           <h3 className="text-4xl font-bold mb-12">About Me</h3>
           <div className="space-y-6 text-lg leading-relaxed">
             <p className={darkMode ? 'text-white/80' : 'text-black/80'}>
-              I&apos;m a Senior Full-Stack Developer specializing in building scalable, high-performance web applications using the MERN stack. With deep expertise in microservices architecture and containerization, I design systems that are maintainable, resilient, and production-ready.
+              Full-Stack Developer specializing in building scalable, high-performance web applications using the MERN stack. With deep expertise in microservices architecture and containerization, I design systems that are maintainable, resilient, and production-ready.
             </p>
             <p className={darkMode ? 'text-white/80' : 'text-black/80'}>
               My approach combines clean code principles, domain-driven design, and modern DevOps practices. I&apos;ve successfully delivered enterprise-level applications handling millions of requests, implemented CI/CD pipelines, and orchestrated complex distributed systems using Kubernetes.
