@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Download, Calendar, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, ExternalLink } from 'lucide-react';
+import { Moon, Sun, Download, Calendar, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, ExternalLink, X, AlertCircle } from 'lucide-react';
 import Image from 'next/image';
 
 interface Skill {
@@ -36,8 +36,12 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('home');
   const [scrolled, setScrolled] = useState<boolean>(false);
+  const [showNotification, setShowNotification] = useState<boolean>(true);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
+    setMounted(true);
+    
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
       
@@ -117,6 +121,58 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      {/* Development Notification Banner - Bottom Right */}
+      {mounted && showNotification && (
+        <div className="fixed bottom-6 right-6 z-[100] w-full max-w-sm px-4 sm:px-0">
+          <div 
+            className="relative rounded-lg p-4 shadow-2xl border backdrop-blur-xl"
+            style={{
+              background: 'rgba(239, 68, 68, 0.1)',
+              borderColor: 'rgba(239, 68, 68, 0.3)',
+              backdropFilter: 'blur(16px)',
+              boxShadow: '0 8px 32px 0 rgba(239, 68, 68, 0.15)',
+            }}
+          >
+            {/* Gradient Overlay for Glass Effect */}
+            <div 
+              className="absolute inset-0 rounded-lg pointer-events-none"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+              }}
+            />
+            
+            <div className="relative flex items-start gap-3">
+              <div className="flex-shrink-0 mt-0.5">
+                <AlertCircle className="w-5 h-5 text-red-400" />
+              </div>
+              
+              <div className="flex-1 min-w-0">
+                <h3 className="text-sm font-semibold text-white mb-1">
+                  Under Development
+                </h3>
+                <p className="text-xs text-white/80 leading-relaxed">
+                  This portfolio is currently under development. Want to connect?{' '}
+                  <a 
+                    href="mailto:rishadkarappa@gmail.com" 
+                    className="font-medium text-red-300 hover:text-red-200 underline transition-colors"
+                  >
+                    rishadkarappa@gmail.com
+                  </a>
+                </p>
+              </div>
+              
+              <button
+                onClick={() => setShowNotification(false)}
+                className="flex-shrink-0 p-1 rounded-md hover:bg-white/10 transition-colors"
+                aria-label="Close notification"
+              >
+                <X className="w-4 h-4 text-white/70 hover:text-white" />
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className={`fixed top-0 w-full z-50 transition-all duration-200 ${
         scrolled 
