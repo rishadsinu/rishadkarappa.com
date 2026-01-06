@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, X, AlertCircle } from 'lucide-react';
+import { Moon, Sun, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, X, AlertCircle, Download, Calendar } from 'lucide-react';
 import Image from 'next/image';
 
 // Add X (Twitter) icon
@@ -57,13 +57,13 @@ export default function Home() {
   };
 
   const skills = {
-  frontend: ['React.js', 'TypeScript'],
-  backend: ['Node.js', 'Express.js', 'Microservices Architecture'],
-  messaging: ['RabbitMQ', 'gRPC', 'REST APIs'],
-  database: ['MongoDB', 'PostgreSQL'],
-  devops: ['AWS', 'Docker', 'Kubernetes'],
-  architecture: ['Clean Architecture', 'Repository Pattern', 'MVC']
-};
+    frontend: ['React.js', 'TypeScript'],
+    backend: ['Node.js', 'Express.js', 'Microservices Architecture'],
+    messaging: ['RabbitMQ', 'gRPC', 'REST APIs'],
+    database: ['MongoDB', 'PostgreSQL'],
+    devops: ['AWS', 'Docker', 'Kubernetes'],
+    architecture: ['Clean Architecture', 'Repository Pattern', 'MVC']
+  };
 
   const projects = [
     {
@@ -168,8 +168,8 @@ export default function Home() {
             <button
               onClick={handleX}
               className={`p-2 rounded-full transition-all duration-200 ${darkMode
-                  ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
-                  : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
+                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
+                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
                 }`}
               style={{
                 backdropFilter: 'blur(4px)',
@@ -183,8 +183,8 @@ export default function Home() {
             <button
               onClick={handleGitHub}
               className={`p-2 rounded-full transition-all duration-200 ${darkMode
-                  ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
-                  : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
+                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
+                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
                 }`}
               style={{
                 backdropFilter: 'blur(4px)',
@@ -198,8 +198,8 @@ export default function Home() {
             <button
               onClick={handleLinkedIn}
               className={`p-2 rounded-full transition-all duration-200 ${darkMode
-                  ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
-                  : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
+                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
+                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
                 }`}
               style={{
                 backdropFilter: 'blur(4px)',
@@ -213,8 +213,8 @@ export default function Home() {
             <button
               onClick={handleEmail}
               className={`p-2 rounded-full transition-all duration-200 ${darkMode
-                  ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
-                  : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
+                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
+                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
                 }`}
               style={{
                 backdropFilter: 'blur(4px)',
@@ -240,8 +240,8 @@ export default function Home() {
           <button
             onClick={() => setDarkMode(!darkMode)}
             className={`relative p-2.5 rounded-full transition-all duration-300 ${darkMode
-                ? 'bg-white/10 hover:bg-white/20 active:scale-95'
-                : 'bg-black/10 hover:bg-black/20 active:scale-95'
+              ? 'bg-white/10 hover:bg-white/20 active:scale-95'
+              : 'bg-black/10 hover:bg-black/20 active:scale-95'
               }`}
             style={{
               backdropFilter: 'blur(4px)',
@@ -256,15 +256,15 @@ export default function Home() {
               <Sun
                 size={20}
                 className={`absolute inset-0 transition-all duration-300 ${darkMode
-                    ? 'opacity-0 rotate-90 scale-0'
-                    : 'opacity-100 rotate-0 scale-100'
+                  ? 'opacity-0 rotate-90 scale-0'
+                  : 'opacity-100 rotate-0 scale-100'
                   }`}
               />
               <Moon
                 size={20}
                 className={`absolute inset-0 transition-all duration-300 ${darkMode
-                    ? 'opacity-100 rotate-0 scale-100'
-                    : 'opacity-0 -rotate-90 scale-0'
+                  ? 'opacity-100 rotate-0 scale-100'
+                  : 'opacity-0 -rotate-90 scale-0'
                   }`}
               />
             </div>
@@ -275,83 +275,86 @@ export default function Home() {
 
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6">
-        <div className="max-w-3xl w-full text-center space-y-8">
-          {/* Profile Image */}
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className={`absolute inset-0 rounded-full blur-2xl opacity-10 ${darkMode ? 'bg-white' : 'bg-black'}`}></div>
-              <div className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 ${darkMode ? 'border-white/10' : 'border-black/10'
-                }`}>
-                <Image
-                  src="/portfolio.png"
-                  alt="Rishad Karappa"
-                  fill
-                  className="object-cover"
-                  priority
-                />
+        <div className="max-w-4xl w-full">
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
+            {/* Profile Image - Left Side */}
+            <div className="flex-shrink-0">
+              <div className="relative">
+                <div className={`absolute inset-0 rounded-full blur-2xl opacity-10 ${darkMode ? 'bg-white' : 'bg-black'}`}></div>
+                <div className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 ${darkMode ? 'border-white/10' : 'border-black/10'
+                  }`}>
+                  <Image
+                    src="/portfolio.png"
+                    alt="Rishad Karappa"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Content - Right Side */}
+            <div className="flex-1 space-y-4 text-center md:text-left">
+              <div className="space-y-2">
+                <h1 className="text-1xl sm:text-1xl font-bold tracking-tight">
+                  Muhammed Rishad Karappa
+                </h1>
+                <p className={`text-base sm:text ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+                  MERN Stack Developer<br />
+                </p>
+              </div>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-wrap gap-3 justify-center md:justify-start">
+                <button
+                  className={`group flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-medium border transition-all ${darkMode
+                      ? 'border-white/20 hover:bg-white/5'
+                      : 'border-black/20 hover:bg-black/5'
+                    }`}
+                >
+                  Schedule Meeting
+                  <Calendar size={12} className="group-hover:translate-x-0.5 transition-transform" />
+                </button>
+
+                <button
+                  className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium border transition-colors ${darkMode
+                      ? 'border-white/20 hover:bg-white/5'
+                      : 'border-black/20 hover:bg-black/5'
+                    }`}
+                >
+                  Resume
+                  <Download size={12}  />
+                </button>
+
+
               </div>
             </div>
           </div>
 
-          {/* Text Content */}
-          <div className="space-y-4">
-            <div className="space-y-2">
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-                Muhammed Rishad Karappa
-              </h1>
-              <p className={`text-base sm:text-lg ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-                MERN Stack Developer
-              </p>
-            </div>
-
-            
-          </div>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-3 justify-center">
-            <button
-              className={`group px-5 py-2.5 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${darkMode ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'
-                }`}
-            >
-              Schedule Meeting
-              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
-            </button>
-            <button
-              className={`px-5 py-2.5 rounded-md text-sm font-medium border transition-colors ${darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
-                }`}
-            >
-              Download Resume
-            </button>
-          </div>
-
-          {/* About */}
-          <div className={`mt-8 p-6 rounded-lg border text-left ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'}`}>
+          {/* About - Full Width Below */}
+          <div className={`mt-12 p-6 rounded-lg border ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'}`}>
             <p className={`text-sm leading-relaxed ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
-             I’m Rishad, MERN Stack Developer with a strong background in building scalable and high-performance web applications. My expertise spans both frontend and backend development, with hands-on experience in:
-
-Frontend: React.js, TypeScript <br />
-
-Backend: Node.js, Express.js, Microservices architecture <br />
-
-Messaging & Communication: RabbitMQ, gRPC, REST<br />
-
-Architecture: Clean Architecture, Repository Pattern, MVC<br />
-
-Databases: MongoDB, PostgreSQL<br />
-
-DevOps & Cloud: AWS, Docker, Kubernetes<br />
-
-I focus on writing efficient, clean, and maintainable code while designing applications that are optimized for performance and scalability. I thrive in collaborative environments, enjoy solving problems, and am always eager to build.
-
+              Hi <span className="inline-block animate-wave">👋</span>,  I'm Rishad, MERN Stack Developer with a strong background in building scalable and high-performance web applications. My expertise spans both frontend and backend development, with hands-on experience in:
+              <br /><br />
+              Frontend: React.js, TypeScript<br />
+              Backend: Node.js, Express.js, Microservices architecture<br />
+              Messaging & Communication: RabbitMQ, gRPC, REST<br />
+              Architecture: Clean Architecture, Repository Pattern, MVC<br />
+              Databases: MongoDB, PostgreSQL<br />
+              DevOps & Cloud: AWS, Docker, Kubernetes<br />
+              <br />
+              I focus on writing efficient, clean, and maintainable code while designing applications that are optimized for performance and scalability. I thrive in collaborative environments, enjoy solving problems, and am always eager to build.
             </p>
           </div>
         </div>
       </section>
 
+
       {/* Skills Section */}
       <section id="skills" className={`py-16 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Technical Stack</h2>
+          <h2 className="text-1xl font-bold mb-8">Technical Stack</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
             <SkillCard title="Frontend" icon={<Code2 size={16} />} skills={skills.frontend} darkMode={darkMode} />
             <SkillCard title="Backend" icon={<Server size={16} />} skills={skills.backend} darkMode={darkMode} />
@@ -365,7 +368,7 @@ I focus on writing efficient, clean, and maintainable code while designing appli
       {/* Projects Section */}
       <section id="projects" className={`py-16 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Projects</h2>
+          <h2 className="text-1xl font-bold mb-8">Projects</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} darkMode={darkMode} />
