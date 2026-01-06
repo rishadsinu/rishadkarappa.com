@@ -84,7 +84,7 @@ export default function Home() {
   };
 
   const handleLinkedIn = () => {
-    window.open('https://www.linkedin.com/in/muhammad-rishad', '_blank');
+    window.open('https://www.linkedin.com/in/rishad-dev/', '_blank');
   };
 
   const handleGitHub = () => {
