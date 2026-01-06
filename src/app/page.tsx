@@ -1,7 +1,8 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Moon, Sun, Download, Calendar, Github, Linkedin, Mail, Code2, Database, Server, Container } from 'lucide-react';
+import { Moon, Sun, Download, Calendar, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, ExternalLink } from 'lucide-react';
+import Image from 'next/image';
 
 interface Skill {
   frontend: string[];
@@ -16,6 +17,7 @@ interface Project {
   description: string;
   tech: string[];
   highlights: string[];
+  link?: string;
 }
 
 interface SkillCardProps {
@@ -23,7 +25,6 @@ interface SkillCardProps {
   icon: React.ReactNode;
   skills: string[];
   darkMode: boolean;
-  className?: string;
 }
 
 interface ProjectCardProps {
@@ -31,20 +32,16 @@ interface ProjectCardProps {
   darkMode: boolean;
 }
 
-interface ContactButtonProps {
-  icon: React.ReactNode;
-  text: string;
-  darkMode: boolean;
-  onClick?: () => void;
-}
-
 export default function Home() {
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('home');
+  const [scrolled, setScrolled] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
+      setScrolled(window.scrollY > 20);
+      
+      const sections = ['home', 'skills', 'projects', 'contact'];
       const current = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -65,9 +62,8 @@ export default function Home() {
   };
 
   const handleResumeDownload = () => {
-    // Replace with your actual resume file path
     const link = document.createElement('a');
-    link.href = '/resume.pdf'; // Place your resume.pdf in the public folder
+    link.href = '/resume.pdf';
     link.download = 'Muhammed_Rishad_Karappa_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -75,12 +71,11 @@ export default function Home() {
   };
 
   const handleScheduleMeeting = () => {
-    // Replace with your actual Calendly or scheduling link
-    window.open('https://calendly.com/your-link', '_blank');
+    // window.open('https://calendly.com/your-link', '_blank');
   };
 
   const handleEmail = () => {
-    window.location.href = 'rishadkarappa@gmail.com';
+    window.location.href = 'mailto:rishadkarappa@gmail.com';
   };
 
   const handleLinkedIn = () => {
@@ -93,47 +88,54 @@ export default function Home() {
 
   const skills: Skill = {
     frontend: ['React.js', 'TypeScript', 'Tailwind CSS', 'Redux'],
-    backend: ['Node.js', 'Express.js', 'Microservices', 'RESTful APIs', 'GraphQL'],
-    database: ['PostgreSQL', 'MongoDB', 'Redis', 'Database Design', 'Query Optimization'],
-    devops: ['Docker', 'Kubernetes', 'CI/CD', 'AWS', 'Nginx'],
-    architecture: ['Microservices', 'Event-Driven', 'CQRS', 'Domain-Driven Design', 'API Gateway']
+    backend: ['Node.js', 'Express.js', 'Microservices', 'GraphQL'],
+    database: ['PostgreSQL', 'MongoDB', 'Redis'],
+    devops: ['Docker', 'Kubernetes', 'AWS', 'CI/CD'],
+    architecture: ['Microservices', 'Event-Driven', 'DDD', 'CQRS']
   };
 
   const projects: Project[] = [
     {
       title: 'E-Commerce Platform',
-      description: 'Full-stack e-commerce solution with microservices architecture, featuring real-time inventory management, payment integration, and admin dashboard.',
-      tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'Kubernetes', 'Redis'],
-      highlights: ['Microservices Architecture', 'Real-time Updates', 'Payment Gateway', 'Admin Panel']
+      description: 'Enterprise microservices architecture with real-time inventory and payment integration.',
+      tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'Kubernetes'],
+      highlights: ['Microservices', 'Real-time', 'Payments']
     },
     {
-      title: 'Unskilled Labour Platform',
-      description: 'Connecting unskilled workers with employers through an intelligent matching system, featuring geo-location services, rating system, and secure payments.',
-      tech: ['MERN Stack', 'Socket.io', 'PostgreSQL', 'Docker', 'AWS'],
-      highlights: ['Real-time Matching', 'Geo-location', 'Rating System', 'Secure Payments']
+      title: 'Labour Marketplace',
+      description: 'Intelligent matching platform with geo-location and secure payment processing.',
+      tech: ['MERN', 'Socket.io', 'PostgreSQL', 'Docker'],
+      highlights: ['Real-time', 'Geo-location', 'Ratings']
     },
     {
-      title: 'Social Media Platform for Documenting Disciplined Work & Professional Journeys',
-      description: 'A unique social platform where individuals can share, document, and showcase their disciplined work, progress, and professional journey to inspire and connect with others.',
-      tech: ['MERN Stack', 'Socket.io', 'PostgreSQL', 'Docker', 'AWS'],
-      highlights: ['Real-time Collaboration', 'User Rating System']
+      title: 'Professional Journey',
+      description: 'Social platform for documenting professional growth and career milestones.',
+      tech: ['MERN', 'Socket.io', 'PostgreSQL', 'AWS'],
+      highlights: ['Analytics', 'Real-time', 'Tracking']
     }
-
   ];
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    <div className={`min-h-screen transition-colors duration-200 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
       {/* Navigation */}
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${darkMode ? 'bg-black/90' : 'bg-white/90'} backdrop-blur-sm border-b ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold tracking-tight"></h1>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-200 ${
+        scrolled 
+          ? (darkMode ? 'bg-black/80 border-b border-white/10' : 'bg-white/80 border-b border-black/10') 
+          : 'bg-transparent'
+      } backdrop-blur-md`}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+          <button onClick={() => scrollToSection('home')} className="text-sm font-semibold tracking-tight hover:opacity-60 transition-opacity">
+            Rishad Karappa
+          </button>
 
-          <div className="hidden md:flex gap-8 text-sm">
-            {['home', 'about', 'skills', 'projects', 'contact'].map(section => (
+          <div className="hidden md:flex gap-6 text-sm">
+            {['home', 'skills', 'projects', 'contact'].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className={`capitalize transition-opacity ${activeSection === section ? 'opacity-100 font-medium' : 'opacity-60 hover:opacity-100'}`}
+                className={`capitalize transition-opacity hover:opacity-100 ${
+                  activeSection === section ? 'opacity-100' : 'opacity-40'
+                }`}
               >
                 {section}
               </button>
@@ -142,89 +144,127 @@ export default function Home() {
 
           <button
             onClick={() => setDarkMode(!darkMode)}
-            className={`p-2 rounded-full transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/10'}`}
-            aria-label="Toggle dark mode"
+            className={`p-1.5 rounded-md transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/10'}`}
+            aria-label="Toggle theme"
           >
-            {darkMode ? <Sun size={20} /> : <Moon size={20} />}
+            {darkMode ? <Sun size={16} /> : <Moon size={16} />}
           </button>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-4xl w-full text-center space-y-8">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-16">
+        <div className="max-w-3xl w-full text-center space-y-8">
+          {/* Profile Image - Small & Centered */}
+          <div className="flex justify-center">
+            <div className="relative">
+              <div className={`absolute inset-0 rounded-full blur-2xl opacity-10 ${darkMode ? 'bg-white' : 'bg-black'}`}></div>
+              <div className={`relative w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 ${
+                darkMode ? 'border-white/10' : 'border-black/10'
+              }`}>
+                <Image 
+                  src="/portfolio.png"
+                  alt="Rishad Karappa" 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Text Content */}
           <div className="space-y-4">
-            <h2 className={`text-5xl md:text-7xl font-bold tracking-tight ${darkMode ? 'text-white' : 'text-black'}`}>
-              Rishad
-              <br />
-              <span className={darkMode ? 'text-white/60' : 'text-black/60'}>Karappa</span>
-            </h2>
-            <p className={`text-xl md:text-2xl ${darkMode ? 'text-white/80' : 'text-black/80'}`}>
-              MERN Stack Developer
-            </p>
-            <p className={`text-base md:text-lg max-w-2xl mx-auto ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-              Architecting scalable microservices and cloud-native applications with expertise in Docker, Kubernetes, and modern web technologies
+            <div className="space-y-2">
+              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
+                Muhammed Rishad Karappa
+              </h1>
+              <p className={`text-base sm:text-lg ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+                Full-Stack Developer
+              </p>
+            </div>
+
+            <p className={`text-sm sm:text-base max-w-xl mx-auto leading-relaxed ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+              Building scalable microservices and cloud-native applications with MERN stack, Docker, Kubernetes, and modern DevOps practices.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4 justify-center">
+          {/* CTA Buttons */}
+          <div className="flex flex-wrap gap-3 justify-center">
             <button
               onClick={handleScheduleMeeting}
-              className={`px-8 py-3 rounded-full font-medium transition-all ${darkMode ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'}`}
+              className={`group px-5 py-2.5 rounded-md text-sm font-medium transition-all flex items-center gap-2 ${
+                darkMode ? 'bg-white text-black hover:bg-white/90' : 'bg-black text-white hover:bg-black/90'
+              }`}
             >
-              <Calendar className="inline mr-2" size={18} />
               Schedule Meeting
+              <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
             </button>
             <button
               onClick={handleResumeDownload}
-              className={`px-8 py-3 rounded-full font-medium border transition-all ${darkMode ? 'border-white/20 hover:bg-white/10' : 'border-black/20 hover:bg-black/10'}`}
+              className={`px-5 py-2.5 rounded-md text-sm font-medium border transition-colors ${
+                darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
+              }`}
             >
-              <Download className="inline mr-2" size={18} />
               Download Resume
             </button>
           </div>
-        </div>
-      </section>
 
-      {/* About Section */}
-      <section id="about" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-4xl mx-auto">
-          <h3 className="text-4xl font-bold mb-12">About Me</h3>
-          <div className="space-y-6 text-lg leading-relaxed">
-            <p className={darkMode ? 'text-white/80' : 'text-black/80'}>
-              Full-Stack Developer specializing in building scalable, high-performance web applications using the MERN stack. With deep expertise in microservices architecture and containerization, I design systems that are maintainable, resilient, and production-ready.
-            </p>
-            <p className={darkMode ? 'text-white/80' : 'text-black/80'}>
-              My approach combines clean code principles, domain-driven design, and modern DevOps practices. I&apos;ve successfully delivered enterprise-level applications handling millions of requests, implemented CI/CD pipelines, and orchestrated complex distributed systems using Kubernetes.
-            </p>
-            <p className={darkMode ? 'text-white/80' : 'text-black/80'}>
-              Beyond coding, I focus on system architecture, performance optimization, and mentoring junior developers. I believe in writing code that not only works but tells a story and stands the test of time.
+          {/* Social Links */}
+          <div className="flex gap-3 justify-center pt-2">
+            <button 
+              onClick={handleGitHub} 
+              className={`p-2 rounded-md transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/10'}`} 
+              aria-label="GitHub"
+            >
+              <Github size={18} />
+            </button>
+            <button 
+              onClick={handleLinkedIn} 
+              className={`p-2 rounded-md transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/10'}`} 
+              aria-label="LinkedIn"
+            >
+              <Linkedin size={18} />
+            </button>
+            <button 
+              onClick={handleEmail} 
+              className={`p-2 rounded-md transition-colors ${darkMode ? 'hover:bg-white/10' : 'hover:bg-black/10'}`} 
+              aria-label="Email"
+            >
+              <Mail size={18} />
+            </button>
+          </div>
+
+          {/* About */}
+          <div className={`mt-8 p-6 rounded-lg border text-left ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'}`}>
+            <p className={`text-sm leading-relaxed ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
+              Passionate about clean architecture and scalable systems. I specialize in microservices orchestration, database optimization, and delivering maintainable enterprise solutions.
             </p>
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold mb-16 text-center">Technical Expertise</h3>
+      <section id="skills" className={`py-16 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8">Technical Stack</h2>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <SkillCard title="Frontend" icon={<Code2 size={24} />} skills={skills.frontend} darkMode={darkMode} />
-            <SkillCard title="Backend" icon={<Server size={24} />} skills={skills.backend} darkMode={darkMode} />
-            <SkillCard title="Database" icon={<Database size={24} />} skills={skills.database} darkMode={darkMode} />
-            <SkillCard title="DevOps" icon={<Container size={24} />} skills={skills.devops} darkMode={darkMode} />
-            <SkillCard title="Architecture" icon={<Server size={24} />} skills={skills.architecture} darkMode={darkMode} className="md:col-span-2 lg:col-span-1" />
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+            <SkillCard title="Frontend" icon={<Code2 size={16} />} skills={skills.frontend} darkMode={darkMode} />
+            <SkillCard title="Backend" icon={<Server size={16} />} skills={skills.backend} darkMode={darkMode} />
+            <SkillCard title="Database" icon={<Database size={16} />} skills={skills.database} darkMode={darkMode} />
+            <SkillCard title="DevOps" icon={<Container size={16} />} skills={skills.devops} darkMode={darkMode} />
+            <SkillCard title="Architecture" icon={<Server size={16} />} skills={skills.architecture} darkMode={darkMode} />
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold mb-16 text-center">Featured Projects</h3>
+      <section id="projects" className={`py-16 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-bold mb-8">Featured Projects</h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {projects.map((project, index) => (
               <ProjectCard key={index} project={project} darkMode={darkMode} />
             ))}
@@ -233,27 +273,59 @@ export default function Home() {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className={`py-32 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-8">Let&apos;s Work Together</h3>
-          <p className={`text-xl mb-12 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
+      <section id="contact" className={`py-16 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+        <div className="max-w-3xl mx-auto text-center space-y-6">
+          <h2 className="text-2xl font-bold">Let&apos;s Connect</h2>
+          <p className={`text-sm ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
             Available for freelance projects and full-time opportunities
           </p>
 
-          <div className="flex flex-wrap gap-6 justify-center mb-12">
-            <ContactButton icon={<Mail size={20} />} text="Email Me" darkMode={darkMode} onClick={handleEmail} />
-            <ContactButton icon={<Calendar size={20} />} text="Schedule Call" darkMode={darkMode} onClick={handleScheduleMeeting} />
-            <ContactButton icon={<Linkedin size={20} />} text="LinkedIn" darkMode={darkMode} onClick={handleLinkedIn} />
-            <ContactButton icon={<Github size={20} />} text="GitHub" darkMode={darkMode} onClick={handleGitHub} />
+          <div className="flex flex-wrap gap-3 justify-center">
+            <button
+              onClick={handleEmail}
+              className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors flex items-center gap-2 ${
+                darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
+              }`}
+            >
+              <Mail size={16} />
+              Email
+            </button>
+            <button
+              onClick={handleScheduleMeeting}
+              className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors flex items-center gap-2 ${
+                darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
+              }`}
+            >
+              <Calendar size={16} />
+              Schedule
+            </button>
+            <button
+              onClick={handleLinkedIn}
+              className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors flex items-center gap-2 ${
+                darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
+              }`}
+            >
+              <Linkedin size={16} />
+              LinkedIn
+            </button>
+            <button
+              onClick={handleGitHub}
+              className={`px-4 py-2 rounded-md text-sm font-medium border transition-colors flex items-center gap-2 ${
+                darkMode ? 'border-white/20 hover:bg-white/5' : 'border-black/20 hover:bg-black/5'
+              }`}
+            >
+              <Github size={16} />
+              GitHub
+            </button>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className={`py-8 px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
-        <div className="max-w-6xl mx-auto text-center">
-          <p className={darkMode ? 'text-white/50' : 'text-black/50'}>
-            © 2025 Rishad Karappa
+      <footer className={`py-6 px-4 sm:px-6 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+        <div className="max-w-5xl mx-auto text-center">
+          <p className={`text-xs ${darkMode ? 'text-white/40' : 'text-black/40'}`}>
+            © 2025 Rishad Karappa · Built with Next.js & Tailwind CSS
           </p>
         </div>
       </footer>
@@ -261,17 +333,19 @@ export default function Home() {
   );
 }
 
-function SkillCard({ title, icon, skills, darkMode, className = '' }: SkillCardProps) {
+function SkillCard({ title, icon, skills, darkMode }: SkillCardProps) {
   return (
-    <div className={`p-6 rounded-2xl border transition-all hover:scale-105 ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'} ${className}`}>
-      <div className="flex items-center gap-3 mb-4">
+    <div className={`p-3 rounded-lg border transition-all hover:scale-[1.02] ${
+      darkMode ? 'border-white/10 hover:border-white/20 bg-white/5' : 'border-black/10 hover:border-black/20 bg-black/5'
+    }`}>
+      <div className="flex items-center gap-2 mb-2">
         {icon}
-        <h4 className="text-xl font-semibold">{title}</h4>
+        <h3 className="text-xs font-semibold">{title}</h3>
       </div>
-      <ul className="space-y-2">
+      <ul className="space-y-0.5">
         {skills.map((skill, index) => (
-          <li key={index} className={`text-sm ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
-            • {skill}
+          <li key={index} className={`text-xs ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+            {skill}
           </li>
         ))}
       </ul>
@@ -281,45 +355,35 @@ function SkillCard({ title, icon, skills, darkMode, className = '' }: SkillCardP
 
 function ProjectCard({ project, darkMode }: ProjectCardProps) {
   return (
-    <div className={`p-8 rounded-2xl border transition-all hover:scale-105 ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'}`}>
-      <h4 className="text-2xl font-bold mb-4">{project.title}</h4>
-      <p className={`mb-6 ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
+    <div className={`group p-5 rounded-lg border transition-all hover:scale-[1.02] ${
+      darkMode ? 'border-white/10 hover:border-white/20 bg-white/5' : 'border-black/10 hover:border-black/20 bg-black/5'
+    }`}>
+      <h3 className="text-base font-semibold mb-2">{project.title}</h3>
+      <p className={`text-xs mb-3 leading-relaxed ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
         {project.description}
       </p>
 
-      <div className="mb-6">
-        <h5 className="text-sm font-semibold mb-3 uppercase tracking-wider">Key Features</h5>
-        <div className="grid grid-cols-2 gap-2">
-          {project.highlights.map((highlight, index) => (
-            <span key={index} className={`text-sm ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-              • {highlight}
-            </span>
-          ))}
-        </div>
+      <div className="flex flex-wrap gap-1.5 mb-3">
+        {project.highlights.map((highlight, index) => (
+          <span
+            key={index}
+            className={`text-xs px-2 py-0.5 rounded-md ${darkMode ? 'bg-white/10' : 'bg-black/10'}`}
+          >
+            {highlight}
+          </span>
+        ))}
       </div>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="flex flex-wrap gap-1">
         {project.tech.map((tech, index) => (
           <span
             key={index}
-            className={`text-xs px-3 py-1 rounded-full ${darkMode ? 'bg-white/10' : 'bg-black/10'}`}
+            className={`text-xs px-1.5 py-0.5 rounded ${darkMode ? 'text-white/40' : 'text-black/40'}`}
           >
             {tech}
           </span>
         ))}
       </div>
     </div>
-  );
-}
-
-function ContactButton({ icon, text, darkMode, onClick }: ContactButtonProps) {
-  return (
-    <button
-      onClick={onClick}
-      className={`flex items-center gap-2 px-6 py-3 rounded-full border transition-all hover:scale-105 ${darkMode ? 'border-white/20 hover:bg-white/10' : 'border-black/20 hover:bg-black/10'}`}
-    >
-      {icon}
-      {text}
-    </button>
   );
 }
