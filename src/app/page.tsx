@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, X, AlertCircle, Download, Calendar } from 'lucide-react';
 import Image from 'next/image';
-import SplashCursor from '../components/SplashCursor'
 import LightRays from '../components/LightRays';
 
 
@@ -92,7 +91,7 @@ export default function Home() {
 
   return (
     
-   <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+  <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
     
     {/* Light rays background effect */}
     <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
@@ -109,8 +108,6 @@ export default function Home() {
       />
     </div>
 
-    {/* Splash effect */}
-    <SplashCursor />
       
       {/* Development Notification Banner */}
       {mounted && showNotification && (
