@@ -295,7 +295,7 @@ export default function Home() {
 
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6">
+     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
         <div className="max-w-4xl w-full">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
             {/* Profile Image - Left Side */}
