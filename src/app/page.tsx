@@ -3,6 +3,10 @@
 import React, { useState, useEffect } from 'react';
 import { Moon, Sun, Github, Linkedin, Mail, Code2, Database, Server, Container, ArrowRight, X, AlertCircle, Download, Calendar } from 'lucide-react';
 import Image from 'next/image';
+import SplashCursor from '../components/SplashCursor'
+import LightRays from '../components/LightRays';
+
+
 
 // Add X (Twitter) icon
 const XIcon = () => (
@@ -87,8 +91,27 @@ export default function Home() {
   ];
 
   return (
-    <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    
+   <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
+    
+    {/* Light rays background effect */}
+    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+      <LightRays
+        raysOrigin="top-center"
+        raysColor={darkMode ? "#00ffff" : "#ff00ff"}
+        raysSpeed={1.5}
+        lightSpread={0.8}
+        rayLength={1.2}
+        followMouse={true}
+        mouseInfluence={0.1}
+        noiseAmount={0.1}
+        distortion={0.05}
+      />
+    </div>
 
+    {/* Splash effect */}
+    <SplashCursor />
+      
       {/* Development Notification Banner */}
       {mounted && showNotification && (
         <div className="fixed bottom-28 right-6 z-[100] w-full max-w-sm px-4 sm:px-0">
@@ -114,9 +137,7 @@ export default function Home() {
               </div>
 
               <div className="flex-1 min-w-0">
-                <h3 className="text-sm font-semibold text-white mb-1">
-                  Under Development
-                </h3>
+               
                 <p className="text-xs text-white/80 leading-relaxed">
                   This portfolio is currently under development. Want to connect?{' '}
                   <a
@@ -335,7 +356,7 @@ export default function Home() {
           {/* About - Full Width Below */}
           <div className={`mt-12 p-6 rounded-lg border ${darkMode ? 'border-white/10 bg-white/5' : 'border-black/10 bg-black/5'}`}>
             <p className={`text-sm leading-relaxed ${darkMode ? 'text-white/70' : 'text-black/70'}`}>
-              Hi <span className="inline-block animate-wave">👋</span>,  I'm Rishad, MERN Stack Developer with a strong background in building scalable and high-performance web applications. My expertise spans both frontend and backend development, with hands-on experience in:
+              Hi <span className="inline-block animate-wave">👋</span> ,  I'm Rishad, MERN Stack Developer with a strong background in building scalable and high-performance web applications. My expertise spans both frontend and backend development, with hands-on experience in:
               <br /><br />
               Frontend: React.js, TypeScript<br />
               Backend: Node.js, Express.js, Microservices architecture<br />
