@@ -18,7 +18,6 @@ export default function Home() {
   const [darkMode, setDarkMode] = useState<boolean>(true);
   const [activeSection, setActiveSection] = useState<string>('home');
   const [scrolled, setScrolled] = useState<boolean>(false);
-  const [showNotification, setShowNotification] = useState<boolean>(true);
   const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
@@ -56,7 +55,7 @@ export default function Home() {
   };
 
   const handleX = () => {
-    window.open('https://x.com/your-handle', '_blank');
+    window.open('https://x.com/rishaddl', '_blank');
   };
 
   const skills = {
@@ -68,95 +67,83 @@ export default function Home() {
     architecture: ['Clean Architecture', 'Repository Pattern', 'MVC']
   };
 
+
   const projects = [
-    {
-      title: 'E-Commerce Platform',
-      description: 'Enterprise microservices architecture with real-time inventory and payment integration.',
-      tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'Kubernetes'],
-      highlights: ['Microservices', 'Real-time', 'Payments']
-    },
-    {
-      title: 'Labour Marketplace',
-      description: 'Intelligent matching platform with geo-location and secure payment processing.',
-      tech: ['MERN', 'Socket.io', 'PostgreSQL', 'Docker'],
-      highlights: ['Real-time', 'Geo-location', 'Ratings']
-    },
-    {
-      title: 'Professional Journey',
-      description: 'Social platform for documenting professional growth and career milestones.',
-      tech: ['MERN', 'Socket.io', 'PostgreSQL', 'AWS'],
-      highlights: ['Analytics', 'Real-time', 'Tracking']
-    }
-  ];
+  {
+    title: 'WorkBee – Unskilled Labour Platform',
+    description: 'A location-based marketplace connecting clients with unskilled workers (students, helpers) for tasks like flat moving, cleaning, catering, mounting, purchasing assistance, and other local services. Empowers students and unskilled workers to earn money through flexible work opportunities.',
+    tech: ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'WebSocket', 'WebRTC', 'RabbitMQ', 'Docker', 'Kubernetes'],
+    architecture: ['Microservices Backend', 'Clean Architecture', 'SOLID Principles'],
+    keyFeatures: [
+      'Post and browse local unskilled work opportunities',
+      'Real-time bidding and chat system via WebSocket',
+      'Video consultation using WebRTC',
+      'Geo-location based worker discovery and matching',
+      'Push notification (ws)',
+      'Message queue with RabbitMQ for scalability',
+      'Multi-role system (Client, Worker, Admin)',
+      'Secure payment integration with escrow workflow',
+      'Rating and review system for trust building',
+      'Push notifications for new jobs and bids',
+      'Docker containerization for deployment',
+      'CI/CD pipeline with Kubernetes orchestration',
+      'Microservices architecture for independent scaling'
+    ],
+    highlights: ['Microservices', 'Real-time', 'WebRTC', 'Geo-location', 'Clean Architecture'],
+    github: [
+      { label: 'Backend', url: 'https://github.com/rishadsinu/workbee-backend' },
+      { label: 'Frontend', url: 'https://github.com/rishadsinu/workbee-frontend' }
+    ]
+  },
+  {
+    title: 'WristWise – Watch E-Commerce Platform',
+    description: 'Advanced e-commerce platform for watch retail with comprehensive admin panel and customer features. Built with Node.js and Express, offering seamless shopping experience with dynamic filtering, secure payments via Razorpay, and powerful backend management tools.',
+    tech: ['MongoDB', 'Express.js', 'Node.js', 'EJS', 'Bootstrap', 'HTML/CSS', 'Razorpay', 'AWS', 'Nginx'],
+    architecture: ['MVC (Model-View-Controller)'],
+    keyFeatures: [
+      'Advanced product search and filtering system',
+      'Dynamic sorting by price, rating, and popularity',
+      'Secure payment integration with Razorpay',
+      'Admin dashboard with visual data representation',
+      'Coupon creation and offer management',
+      'Comprehensive sales reports (daily, weekly, monthly)',
+      'User authentication with Passport.js',
+      'Email notifications via Nodemailer',
+      'PDF invoice generation with PDFKit',
+      'Product and inventory management',
+      'Order tracking and management system',
+      'Responsive design with Bootstrap',
+      'AWS deployment with Nginx server',
+      'Session management and user cart persistence'
+    ],
+    highlights: ['E-Commerce', 'Rezorpay ( payment gateway )', 'Admin Dashboard', 'AWS Hosting', 'MVC'],
+    github: [
+      { label: 'Repository', url: 'https://github.com/rishadsinu/wrist-wise-e-commerce-website' }
+    ]
+  }
+];
+
+
 
   return (
-    
-  <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
-    
-    {/* Light rays background effect */}
-    <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
-      <LightRays
-        raysOrigin="top-center"
-        raysColor={darkMode ? "#00ffff" : "#ff00ff"}
-        raysSpeed={1.5}
-        lightSpread={0.8}
-        rayLength={1.2}
-        followMouse={true}
-        mouseInfluence={0.1}
-        noiseAmount={0.1}
-        distortion={0.05}
-      />
-    </div>
 
-      
-      {/* Development Notification Banner */}
-      {mounted && showNotification && (
-        <div className="fixed bottom-28 right-6 z-[100] w-full max-w-sm px-4 sm:px-0">
-          <div
-            className="relative rounded-lg p-4 shadow-2xl border backdrop-blur-xl"
-            style={{
-              background: 'rgba(239, 68, 68, 0.1)',
-              borderColor: 'rgba(239, 68, 68, 0.3)',
-              backdropFilter: 'blur(16px)',
-              boxShadow: '0 8px 32px 0 rgba(239, 68, 68, 0.15)',
-            }}
-          >
-            <div
-              className="absolute inset-0 rounded-lg pointer-events-none"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
-              }}
-            />
+    <div className={`min-h-screen pb-24 transition-colors duration-300 ${darkMode ? 'bg-black text-white' : 'bg-white text-black'}`}>
 
-            <div className="relative flex items-start gap-3">
-              <div className="flex-shrink-0 mt-0.5">
-                <AlertCircle className="w-5 h-5 text-red-400" />
-              </div>
+      {/* Light rays background effect */}
+      <div style={{ position: 'fixed', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0, pointerEvents: 'none' }}>
+        <LightRays
+          raysOrigin="top-center"
+          raysColor={darkMode ? "#00ffff" : "#ff00ff"}
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+        />
+      </div>
 
-              <div className="flex-1 min-w-0">
-               
-                <p className="text-xs text-white/80 leading-relaxed">
-                  This portfolio is currently under development. Want to connect?{' '}
-                  <a
-                    href="mailto:rishadkarappa@gmail.com"
-                    className="font-medium text-red-300 hover:text-red-200 underline transition-colors"
-                  >
-                    rishadkarappa@gmail.com
-                  </a>
-                </p>
-              </div>
-
-              <button
-                onClick={() => setShowNotification(false)}
-                className="flex-shrink-0 p-1 rounded-md hover:bg-white/10 transition-colors"
-                aria-label="Close notification"
-              >
-                <X className="w-4 h-4 text-white/70 hover:text-white" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Centered Compact Bottom Navigation Bar */}
       <nav className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4">
@@ -183,20 +170,7 @@ export default function Home() {
 
           {/* Social Media Icons */}
           <div className="flex items-center gap-1">
-            <button
-              onClick={handleX}
-              className={`p-2 rounded-full transition-all duration-200 ${darkMode
-                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
-                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
-                }`}
-              style={{
-                backdropFilter: 'blur(4px)',
-                WebkitBackdropFilter: 'blur(4px)',
-              }}
-              aria-label="X (Twitter)"
-            >
-              <XIcon />
-            </button>
+            
 
             <button
               onClick={handleGitHub}
@@ -226,6 +200,21 @@ export default function Home() {
               aria-label="LinkedIn"
             >
               <Linkedin size={18} />
+            </button>
+
+            <button
+              onClick={handleX}
+              className={`p-2 rounded-full transition-all duration-200 ${darkMode
+                ? 'hover:bg-white/10 text-white/70 hover:text-white active:scale-95'
+                : 'hover:bg-black/10 text-black/70 hover:text-black active:scale-95'
+                }`}
+              style={{
+                backdropFilter: 'blur(4px)',
+                WebkitBackdropFilter: 'blur(4px)',
+              }}
+              aria-label="X (Twitter)"
+            >
+              <XIcon />
             </button>
 
             <button
@@ -292,7 +281,7 @@ export default function Home() {
 
 
       {/* Hero Section */}
-     <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 sm:px-6 pt-20 sm:pt-0">
         <div className="max-w-4xl w-full">
           <div className="flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8">
             {/* Profile Image - Left Side */}
@@ -327,8 +316,8 @@ export default function Home() {
               <div className="flex flex-wrap gap-3 justify-center md:justify-start">
                 <button
                   className={`group flex items-center gap-1.5 px-3 py-1 rounded-full text-[12px] font-medium border transition-all ${darkMode
-                      ? 'border-white/20 hover:bg-white/5'
-                      : 'border-black/20 hover:bg-black/5'
+                    ? 'border-white/20 hover:bg-white/5'
+                    : 'border-black/20 hover:bg-black/5'
                     }`}
                 >
                   Schedule Meeting
@@ -337,12 +326,12 @@ export default function Home() {
 
                 <button
                   className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[12px] font-medium border transition-colors ${darkMode
-                      ? 'border-white/20 hover:bg-white/5'
-                      : 'border-black/20 hover:bg-black/5'
+                    ? 'border-white/20 hover:bg-white/5'
+                    : 'border-black/20 hover:bg-black/5'
                     }`}
                 >
                   Resume
-                  <Download size={12}  />
+                  <Download size={12} />
                 </button>
 
 
@@ -419,28 +408,170 @@ function SkillCard({ title, icon, skills, darkMode }: any) {
 }
 
 function ProjectCard({ project, darkMode }: any) {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
-    <div className={`group p-5 rounded-lg border transition-all hover:scale-[1.02] ${darkMode ? 'border-white/10 hover:border-white/20 bg-white/5' : 'border-black/10 hover:border-black/20 bg-black/5'
-      }`}>
-      <h3 className="text-base font-semibold mb-2">{project.title}</h3>
-      <p className={`text-xs mb-3 leading-relaxed ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
-        {project.description}
-      </p>
-      <div className="flex flex-wrap gap-1.5 mb-3">
-        {project.highlights.map((highlight: string, index: number) => (
-          <span key={index} className={`text-xs px-2 py-0.5 rounded-md ${darkMode ? 'bg-white/10' : 'bg-black/10'}`}>
-            {highlight}
-          </span>
-        ))}
+    <div className={`group rounded-lg border transition-all ${
+      darkMode ? 'border-white/10 hover:border-white/20 bg-white/5' : 'border-black/10 hover:border-black/20 bg-black/5'
+    }`}>
+      
+      {/* Header - Always Visible */}
+      <div className="p-5">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex-1">
+            <h3 className="text-base font-semibold mb-2">{project.title}</h3>
+            <p className={`text-xs leading-relaxed ${darkMode ? 'text-white/60' : 'text-black/60'}`}>
+              {project.description}
+            </p>
+          </div>
+          
+          {/* Expand/Collapse Button */}
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className={`flex-shrink-0 p-2 rounded-full transition-all ${
+              darkMode 
+                ? 'hover:bg-white/10 text-white/70' 
+                : 'hover:bg-black/10 text-black/70'
+            }`}
+            aria-label={isExpanded ? "Collapse details" : "Expand details"}
+          >
+            <ArrowRight 
+              size={16} 
+              className={`transition-transform duration-300 ${
+                isExpanded ? 'rotate-90' : ''
+              }`}
+              style={{
+                transform: isExpanded ? 'rotate(0deg)' : 'rotate(0deg)'
+              }}
+            />
+          </button>
+        </div>
       </div>
-      <div className="flex flex-wrap gap-1">
-        {project.tech.map((tech: string, index: number) => (
-          <span key={index} className={`text-xs px-1.5 py-0.5 rounded ${darkMode ? 'text-white/40' : 'text-black/40'}`}>
-            {tech}
-          </span>
-        ))}
+
+      {/* Expandable Content */}
+      <div 
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${
+          isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'
+        }`}
+      >
+        <div className={`px-5 pb-5 border-t ${darkMode ? 'border-white/10' : 'border-black/10'}`}>
+          
+          {/* Highlights */}
+          {project.highlights && (
+            <div className="mt-4">
+              <div className="flex flex-wrap gap-1.5">
+                {project.highlights.map((highlight: string, index: number) => (
+                  <span 
+                    key={index} 
+                    className={`text-xs px-2 py-0.5 rounded-md ${
+                      darkMode ? 'bg-white/10' : 'bg-black/10'
+                    }`}
+                  >
+                    {highlight}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Architecture */}
+          {project.architecture && (
+            <div className="mt-4">
+              <p className={`text-xs font-medium mb-2 ${
+                darkMode ? 'text-white/80' : 'text-black/80'
+              }`}>
+                Architecture:
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {project.architecture.map((arch: string, index: number) => (
+                  <span 
+                    key={index} 
+                    className={`text-xs px-2 py-1 rounded ${
+                      darkMode 
+                        ? 'bg-blue-500/20 text-blue-300' 
+                        : 'bg-blue-500/20 text-blue-700'
+                    }`}
+                  >
+                    {arch}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Tech Stack */}
+          {project.tech && (
+            <div className="mt-4">
+              <p className={`text-xs font-medium mb-2 ${
+                darkMode ? 'text-white/80' : 'text-black/80'
+              }`}>
+                Tech Stack:
+              </p>
+              <div className="flex flex-wrap gap-1">
+                {project.tech.map((tech: string, index: number) => (
+                  <span 
+                    key={index} 
+                    className={`text-xs px-2 py-0.5 rounded border ${
+                      darkMode 
+                        ? 'border-white/20 text-white/60' 
+                        : 'border-black/20 text-black/60'
+                    }`}
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Key Features */}
+          {project.keyFeatures && (
+            <div className="mt-4">
+              <p className={`text-xs font-medium mb-2 ${
+                darkMode ? 'text-white/80' : 'text-black/80'
+              }`}>
+                Key Features ({project.keyFeatures.length}):
+              </p>
+              <ul className={`text-xs space-y-1.5 ${
+                darkMode ? 'text-white/60' : 'text-black/60'
+              }`}>
+                {project.keyFeatures.map((feature: string, index: number) => (
+                  <li key={index} className="flex items-start gap-2">
+                    <span className={`mt-1 ${darkMode ? 'text-white/40' : 'text-black/40'}`}>
+                      •
+                    </span>
+                    <span className="flex-1">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* GitHub Links */}
+          {project.github && (
+            <div className={`flex flex-wrap gap-2 mt-4 pt-4 border-t ${
+              darkMode ? 'border-white/10' : 'border-black/10'
+            }`}>
+              {project.github.map((repo: any, index: number) => (
+                <a
+                  key={index}
+                  href={repo.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full ${
+                    darkMode 
+                      ? 'bg-white/10 text-white/70 hover:bg-white/20 hover:text-white' 
+                      : 'bg-black/10 text-black/70 hover:bg-black/20 hover:text-black'
+                  } transition-all hover:scale-105`}
+                >
+                  <Github size={14} />
+                  {repo.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
 }
-
